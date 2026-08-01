@@ -2,7 +2,7 @@ pipeline {
   agent any
 
   environment {
-    IMAGE_NAME = "theshubhamgour/github-profile-summarizer"
+    IMAGE_NAME = "jaychoudhary123/github-profile-summarizer"
     IMAGE_TAG = "v${env.BUILD_NUMBER}"
     MAX_REPOS = "50"
   }
@@ -39,7 +39,7 @@ pipeline {
     stage('Docker Login & Push') {
       steps {
         // Assuming 'DockerHub' is the ID for your DockerHub Username/Password credential
-        withCredentials([usernamePassword(credentialsId: 'DockerHub', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+        withCredentials([usernamePassword(credentialsId: 'Docker', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
           sh 'echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin'
         }
         sh 'docker push $IMAGE_NAME:$IMAGE_TAG'
