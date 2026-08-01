@@ -25,7 +25,7 @@ pipeline {
       steps {
         // SECURELY retrieve the GitHub Token from Jenkins Credentials
         // Make sure you have a Secret Text credential with ID 'github-token-secret'
-        withCredentials([string(credentialsId: 'git-secrets', variable: 'GITHUB_TOKEN_VALUE')]) {
+        withCredentials([string(credentialsId: 'github-token-secret', variable: 'GITHUB_TOKEN_VALUE')]) {
           
           // Pass the token to the Docker build command using --build-arg
           sh "docker build \
